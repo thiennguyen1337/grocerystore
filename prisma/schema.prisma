@@ -1,0 +1,32 @@
+
+generator client {
+  provider  = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("grocery-store.mysql.database.azure.com")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  category  String
+  price     Float
+  // Add other product-related fields
+}
+
+model Category {
+  id   Int      @id @default(autoincrement())
+  name String
+}
+
+model Sale {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  quantity    Int
+  totalPrice  Float
+  createdAt   DateTime @default(now())
+}
+
+// Add relationships between models (e.g., one Product belongs to one Category)
